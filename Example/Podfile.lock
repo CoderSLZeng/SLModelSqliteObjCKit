@@ -1,0 +1,16 @@
+PODS:
+  - SLModelSqliteObjCKit (0.1.0)
+
+DEPENDENCIES:
+  - SLModelSqliteObjCKit (from `../`)
+
+EXTERNAL SOURCES:
+  SLModelSqliteObjCKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SLModelSqliteObjCKit: 24d8ea6b658e145f777d305d6dccaf8407c8a504
+
+PODFILE CHECKSUM: a68132358bb5d21e18db360a5fe4be85d0827269
+
+COCOAPODS: 1.6.0
