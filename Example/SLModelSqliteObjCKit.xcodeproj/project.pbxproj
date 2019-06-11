@@ -26,6 +26,8 @@
 		AE0DCB9222AF585F0062B472 /* SLModelToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCB9122AF585F0062B472 /* SLModelToolTests.m */; };
 		AE0DCB9522AF804E0062B472 /* SLSqliteModelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCB9422AF804E0062B472 /* SLSqliteModelTool.m */; };
 		AE0DCB9C22AF8BAB0062B472 /* SLSqliteModelToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCB9B22AF8BAB0062B472 /* SLSqliteModelToolTests.m */; };
+		AE0DCB9F22AF9B510062B472 /* SLTableTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCB9E22AF9B510062B472 /* SLTableTool.m */; };
+		AE0DCBA122AF9E660062B472 /* SLTableToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCBA022AF9E660062B472 /* SLTableToolTests.m */; };
 		AE2AA92E22AE5E4A00C6448C /* SLSqliteTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2AA92C22AE5E4A00C6448C /* SLSqliteTool.m */; };
 		AE2AA93022AE5E5900C6448C /* SLSqliteToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2AA92F22AE5E5900C6448C /* SLSqliteToolTests.m */; };
 		E6A8E6616E22DC7518BB27EC /* Pods_SLModelSqliteObjCKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6DF6A9E136D39787B8F17E /* Pods_SLModelSqliteObjCKit_Tests.framework */; };
@@ -81,6 +83,9 @@
 		AE0DCB9422AF804E0062B472 /* SLSqliteModelTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSqliteModelTool.m; sourceTree = "<group>"; };
 		AE0DCB9622AF85460062B472 /* SLModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLModelProtocol.h; sourceTree = "<group>"; };
 		AE0DCB9B22AF8BAB0062B472 /* SLSqliteModelToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSqliteModelToolTests.m; sourceTree = "<group>"; };
+		AE0DCB9D22AF9B510062B472 /* SLTableTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLTableTool.h; sourceTree = "<group>"; };
+		AE0DCB9E22AF9B510062B472 /* SLTableTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLTableTool.m; sourceTree = "<group>"; };
+		AE0DCBA022AF9E660062B472 /* SLTableToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLTableToolTests.m; sourceTree = "<group>"; };
 		AE2AA92C22AE5E4A00C6448C /* SLSqliteTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSqliteTool.m; sourceTree = "<group>"; };
 		AE2AA92D22AE5E4A00C6448C /* SLSqliteTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSqliteTool.h; sourceTree = "<group>"; };
 		AE2AA92F22AE5E5900C6448C /* SLSqliteToolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSqliteToolTests.m; sourceTree = "<group>"; };
@@ -181,6 +186,7 @@
 			children = (
 				AE2AA92F22AE5E5900C6448C /* SLSqliteToolTests.m */,
 				AE0DCB9122AF585F0062B472 /* SLModelToolTests.m */,
+				AE0DCBA022AF9E660062B472 /* SLTableToolTests.m */,
 				AE0DCB9B22AF8BAB0062B472 /* SLSqliteModelToolTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -216,6 +222,8 @@
 				AE0DCB8F22AF54880062B472 /* SLModelTool.m */,
 				AE0DCB9322AF804E0062B472 /* SLSqliteModelTool.h */,
 				AE0DCB9422AF804E0062B472 /* SLSqliteModelTool.m */,
+				AE0DCB9D22AF9B510062B472 /* SLTableTool.h */,
+				AE0DCB9E22AF9B510062B472 /* SLTableTool.m */,
 				AE0DCB9622AF85460062B472 /* SLModelProtocol.h */,
 			);
 			path = Classes;
@@ -408,6 +416,7 @@
 				6003F59E195388D20070C39A /* SLAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* SLViewController.m in Sources */,
 				AE0DCB9022AF54880062B472 /* SLModelTool.m in Sources */,
+				AE0DCB9F22AF9B510062B472 /* SLTableTool.m in Sources */,
 				AE0DCB9522AF804E0062B472 /* SLSqliteModelTool.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
@@ -418,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE0DCB9C22AF8BAB0062B472 /* SLSqliteModelToolTests.m in Sources */,
+				AE0DCBA122AF9E660062B472 /* SLTableToolTests.m in Sources */,
 				AE0DCB9222AF585F0062B472 /* SLModelToolTests.m in Sources */,
 				AE2AA93022AE5E5900C6448C /* SLSqliteToolTests.m in Sources */,
 			);

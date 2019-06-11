@@ -44,6 +44,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)componentsClassIvarNamesAndSQLiteTypesStringOfClass:(Class)cls;
 
+/**
+ 将类中所有成员变量的变量名进行排序
+
+ @param cls 类名
+ @return 排好序的成员变量名数据
+ */
++ (NSArray<NSString *> *)sortedIvarNamesOfClass:(Class)cls;
 @end
 
 NS_ASSUME_NONNULL_END

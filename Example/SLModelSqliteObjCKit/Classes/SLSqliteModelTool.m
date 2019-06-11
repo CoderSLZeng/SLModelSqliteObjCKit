@@ -17,7 +17,7 @@
     
     // 1.拼接创建表格的SQL语句
     // 1.1.获取表名
-    NSString *tableName = [[SLModelTool tableNameOfClass:cls] lowercaseString];
+    NSString *tableName = [SLModelTool tableNameOfClass:cls];
     
     // 1.2.获取主键
     if (![cls respondsToSelector:@selector(primaryKey)]) {
@@ -30,11 +30,13 @@
     NSString *cloumnStr = [SLModelTool componentsClassIvarNamesAndSQLiteTypesStringOfClass:cls];
     
     // 1.4.拼接SQL语句
-    NSString *createTableSQL = [NSString stringWithFormat:@"create table if not exists t_%@(%@, primary key (%@) )", tableName, cloumnStr, primaryKey];
+    NSString *createTableSQL = [NSString stringWithFormat:@"create table if not exists %@(%@, primary key (%@))", tableName, cloumnStr, primaryKey];
     
     // 2.执行SQL语句
     return [SLSqliteTool excuteSql:createTableSQL UID:UID];
 }
+
+
 
 
 @end

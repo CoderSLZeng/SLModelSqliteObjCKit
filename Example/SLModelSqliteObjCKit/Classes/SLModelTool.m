@@ -14,7 +14,7 @@
 
 #pragma mark - 接口
 + (NSString *)tableNameOfClass:(Class)cls {
-    return NSStringFromClass(cls);
+    return [NSString stringWithFormat:@"t_%@", [NSStringFromClass(cls) lowercaseString]];
 }
 
 + (NSMutableDictionary<NSString *, NSString *> *)classIvarNameTypeDictOfClass:(Class)cls {
@@ -80,6 +80,15 @@
     NSString *result = [arrayM componentsJoinedByString:@", "];
     return  [result substringToIndex:result.length];
     
+}
+
++ (NSArray<NSString *> *)sortedIvarNamesOfClass:(Class)cls {
+    NSMutableDictionary *dictM = [self classIvarNameTypeDictOfClass:cls];
+    NSArray *keys = dictM.allKeys;
+    keys = [keys sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull obj1, NSString *  _Nonnull obj2) {
+        return [obj1 compare:obj2];
+    }];
+    return keys;
 }
 
 #pragma mark - 私有方法

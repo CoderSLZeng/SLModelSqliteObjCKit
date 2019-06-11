@@ -43,12 +43,18 @@
     NSLog(@"%@", [SLModelTool tableNameOfClass:NSClassFromString(@"SLStu")]);
 }
 
+- (void)testAllTableSortedIvarNames {
+    NSArray *array = [SLModelTool sortedIvarNamesOfClass:NSClassFromString(@"SLStu")];
+    NSLog(@"%@", array);
+}
 
 - (void)testTrimming {
     NSString *ivarType = @"@\"NSString\"123";
     NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"@\""];
     ivarType = [ivarType stringByTrimmingCharactersInSet:set];
 }
+
+
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
