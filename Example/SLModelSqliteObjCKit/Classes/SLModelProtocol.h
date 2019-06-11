@@ -10,11 +10,16 @@
 
 @protocol SLModelProtocol <NSObject>
 
+@required
 /**
- 获取主键
-
  @return 主键
  */
 + (NSString *)primaryKey;
+
+@optional
+/**
+ @return 忽略字段名
+ */
++ (NSArray *)ignoreColumnNames;
 
 @end

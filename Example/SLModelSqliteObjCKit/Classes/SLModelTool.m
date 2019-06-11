@@ -8,6 +8,7 @@
 
 #import "SLModelTool.h"
 #import <objc/runtime.h>
+#import "SLModelProtocol.h"
 
 @implementation SLModelTool
 
@@ -22,6 +23,12 @@
     Ivar *ivarList = class_copyIvarList(cls, &outCount);
     
     NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    
+    NSArray *ignoreColumnNames = nil;
+    if ([cls respondsToSelector:@selector(ignoreColumnNames)]) {
+        ignoreColumnNames = [cls ignoreColumnNames];
+    }
+    
     // 2.变量所有的成员变量
     for (int i = 0; i < outCount; i++) {
         
@@ -34,6 +41,8 @@
         if ([ivarName hasPrefix:@"_"] ) {
             ivarName = [ivarName substringFromIndex:1];
         }
+        
+        if ([ignoreColumnNames containsObject:ivarName]) continue;
         
         // 2.4.获取成员变量的类型
         NSString *ivarType = [NSString stringWithUTF8String:ivar_getTypeEncoding(ivar)]; // @\"NSString\"
