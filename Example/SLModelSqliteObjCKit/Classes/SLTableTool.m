@@ -21,7 +21,7 @@
     NSMutableArray *array = [SLSqliteTool querySql:queryCreateSQL UID:UID];
     NSMutableDictionary *dictM = array.firstObject;
     
-    NSString *createTableSQL = [dictM[@"sql"] lowercaseString];
+    NSString *createTableSQL = dictM[@"sql"];
     if (!createTableSQL.length) return nil;
     
     NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"\""];

@@ -28,6 +28,11 @@
     XCTAssertTrue(isSuccess);
 }
 
+- (void)testIsTableRequiredUpdate {
+    BOOL isSuccess = [SLSqliteModelTool isTableRequiredUpdateOfClass:NSClassFromString(@"SLStu") UID:nil];
+    XCTAssertTrue(isSuccess);
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{

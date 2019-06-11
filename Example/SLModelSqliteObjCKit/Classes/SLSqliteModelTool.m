@@ -10,6 +10,7 @@
 #import "SLModelTool.h"
 #import "SLModelProtocol.h"
 #import "SLSqliteTool.h"
+#import "SLTableTool.h"
 
 @implementation SLSqliteModelTool
 
@@ -36,7 +37,11 @@
     return [SLSqliteTool excuteSql:createTableSQL UID:UID];
 }
 
-
++ (BOOL)isTableRequiredUpdateOfClass:(Class)cls UID:(NSString *)UID {
+    NSArray *modelNames = [SLModelTool sortedIvarNamesOfClass:cls];
+    NSArray *tableNames = [SLTableTool tableSortedColumnNamesOfClass:cls UID:UID];
+    return ![modelNames isEqualToArray:tableNames];
+}
 
 
 @end
