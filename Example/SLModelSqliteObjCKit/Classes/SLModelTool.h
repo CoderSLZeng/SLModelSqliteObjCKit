@@ -20,6 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)tableNameOfClass:(Class)cls;
 
+
+/**
+ 获取一个临时表名
+
+ @param cls 类名
+ @return 临时表名
+ */
++ (NSString *)tempTableNameOfClass:(Class)cls;
+
 /**
  将类中所有成员变量的 变量名做为键 和 变量类型作为值 组成字典
 

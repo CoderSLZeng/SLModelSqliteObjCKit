@@ -18,7 +18,7 @@
     
     // 2.根据表名获取创建表的SQL语句
     NSString *queryCreateSQL = [NSString stringWithFormat:@"select sql from sqlite_master where type = 'table' and name = '%@'", tableName];
-    NSMutableArray *array = [SLSqliteTool querySql:queryCreateSQL UID:UID];
+    NSMutableArray *array = [SLSqliteTool querySQL:queryCreateSQL UID:UID];
     NSMutableDictionary *dictM = array.firstObject;
     
     NSString *createTableSQL = dictM[@"sql"];

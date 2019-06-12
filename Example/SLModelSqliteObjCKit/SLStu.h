@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) float score2;
 @property (assign, nonatomic) float height;
 
+
+
 @end
 
 NS_ASSUME_NONNULL_END

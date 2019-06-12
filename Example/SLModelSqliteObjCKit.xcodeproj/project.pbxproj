@@ -291,7 +291,11 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = CoderSLZeng;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = CF3ZTC43YH;
+					};
 					6003F5AD195388D20070C39A = {
+						DevelopmentTeam = CF3ZTC43YH;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 				};
@@ -577,6 +581,7 @@
 			baseConfigurationReference = 95BF559E6A41118D733AEA40 /* Pods-SLModelSqliteObjCKit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CF3ZTC43YH;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SLModelSqliteObjCKit/SLModelSqliteObjCKit-Prefix.pch";
 				INFOPLIST_FILE = "SLModelSqliteObjCKit/SLModelSqliteObjCKit-Info.plist";
@@ -592,6 +597,7 @@
 			baseConfigurationReference = 38ABDC4874F7E82A466FFC9C /* Pods-SLModelSqliteObjCKit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CF3ZTC43YH;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SLModelSqliteObjCKit/SLModelSqliteObjCKit-Prefix.pch";
 				INFOPLIST_FILE = "SLModelSqliteObjCKit/SLModelSqliteObjCKit-Info.plist";
@@ -607,6 +613,7 @@
 			baseConfigurationReference = 8444F7EF0D04C29B42CF6A40 /* Pods-SLModelSqliteObjCKit_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CF3ZTC43YH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -631,6 +638,7 @@
 			baseConfigurationReference = 46F3E88691323789E955A570 /* Pods-SLModelSqliteObjCKit_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CF3ZTC43YH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

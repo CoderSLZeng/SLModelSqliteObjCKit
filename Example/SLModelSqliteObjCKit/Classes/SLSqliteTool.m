@@ -17,7 +17,7 @@ sqlite3 *ppDb = nil;
 @implementation SLSqliteTool
 
 #pragma mark - 接口
-+ (BOOL)excuteSql:(NSString *)sql UID:(NSString *)UID {
++ (BOOL)excuteSQL:(NSString *)SQL UID:(NSString *)UID {
     // 1.打开数据库
     BOOL isOpen = [self openDBWithUID:UID];
     
@@ -27,7 +27,7 @@ sqlite3 *ppDb = nil;
     }
     
     // 2.执行语句
-    BOOL result = sqlite3_exec(ppDb, sql.UTF8String, nil, nil, nil) == SQLITE_OK;
+    BOOL result = sqlite3_exec(ppDb, SQL.UTF8String, nil, nil, nil) == SQLITE_OK;
     
     // 3.关闭数据
     [self closeDB];
@@ -35,7 +35,28 @@ sqlite3 *ppDb = nil;
     return result;
 }
 
-+ (NSMutableArray<NSMutableDictionary *> *)querySql:(NSString *)sql UID:(NSString *)UID {
++ (BOOL)excuteSQLs:(NSArray<NSString *> *)SQLs UID:(NSString *)UID {
+    
+    // 开启事物
+    [self excuteSQL:@"begin transaction" UID:UID];
+    
+    for (NSString *SQL in SQLs) {
+        BOOL result = [self excuteSQL:SQL UID:UID];
+        if (!result) {
+            // 回滚事物
+            [self excuteSQL:@"rollback transaction" UID:UID];
+            return NO;
+        }
+    }
+    
+    // 提交事物
+    [self excuteSQL:@"commit transaction" UID:UID];
+    return YES;
+    
+    return NO;
+}
+
++ (NSMutableArray<NSMutableDictionary *> *)querySQL:(NSString *)SQL UID:(NSString *)UID {
     // 1.打开数据库
     [self openDBWithUID:UID];
     
@@ -46,7 +67,7 @@ sqlite3 *ppDb = nil;
     // 参数4: 准备语句
     // 参数5: 通过参数3, 取出参数2的长度字节之后, 剩下的字符串
     sqlite3_stmt *ppStmt = nil;
-    if (sqlite3_prepare_v2(ppDb, sql.UTF8String, -1, &ppStmt, nil) != SQLITE_OK) {
+    if (sqlite3_prepare_v2(ppDb, SQL.UTF8String, -1, &ppStmt, nil) != SQLITE_OK) {
         NSLog(@"准备语句编译失败");
         return nil;
     }

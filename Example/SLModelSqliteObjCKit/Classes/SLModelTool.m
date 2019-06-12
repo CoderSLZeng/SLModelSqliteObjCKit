@@ -17,6 +17,13 @@
     return [NSString stringWithFormat:@"t_%@", [NSStringFromClass(cls) lowercaseString]];
 }
 
++ (NSString *)tempTableNameOfClass:(Class)cls {
+    NSString *talbeName = [self tableNameOfClass:cls];
+    NSString *tmpTableName = [talbeName stringByAppendingString:@"_tmp"];
+    return tmpTableName;
+//    return [NSString stringWithFormat:@"%@_temp", [self tempTableNameOfClass:cls]];
+}
+
 + (NSMutableDictionary<NSString *, NSString *> *)classIvarNameTypeDictOfClass:(Class)cls {
     // 1.获类里所有的成员变量
     unsigned int outCount = 0;

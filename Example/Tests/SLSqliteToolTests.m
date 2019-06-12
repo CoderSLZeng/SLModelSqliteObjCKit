@@ -26,14 +26,14 @@
 - (void)testExample {
 
     NSString *sql = @"create table if not exists t_stu(id integer primary key autoincrement, name text not null, age integer, score real)";
-    BOOL result = [SLSqliteTool excuteSql:sql UID:nil];
+    BOOL result = [SLSqliteTool excuteSQL:sql UID:nil];
     XCTAssertEqual(result, YES);
 }
 
 - (void)testQuery {
     
     NSString *sql = @"select * from t_stu";
-    NSMutableArray *result = [SLSqliteTool querySql:sql UID:nil];
+    NSMutableArray *result = [SLSqliteTool querySQL:sql UID:nil];
     NSLog(@"%@", result);
 }
 

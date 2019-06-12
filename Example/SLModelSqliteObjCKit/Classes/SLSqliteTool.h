@@ -13,22 +13,31 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLSqliteTool : NSObject
 
 /**
- 执行sql语句
+ 执行SQL语句
 
- @param sql sql语句
+ @param SQL SQL语句
  @param UID 根据UID打开相应的数据库
  @return 是否成功执行
  */
-+ (BOOL)excuteSql:(NSString *)sql UID:(nullable NSString *)UID;
++ (BOOL)excuteSQL:(NSString *)SQL UID:(nullable NSString *)UID;
 
 /**
- 执行查询sql语句
+ 执行多条SQL语句
 
- @param sql sql语句
+ @param SQLs SQL语句
+ @param UID 根据UID打开相应的数据库
+ @return 是否成功执行
+ */
++ (BOOL)excuteSQLs:(NSArray<NSString *> *)SQLs UID:(nullable NSString *)UID;
+
+/**
+ 执行查询SQL语句
+
+ @param SQL SQL语句
  @param UID 根据UID打开相应的数据库
  @return 字典(一行记录)组成的数组
  */
-+ (NSMutableArray <NSMutableDictionary *> *)querySql:(nullable NSString *)sql UID:(NSString * _Nullable)UID;
++ (NSMutableArray <NSMutableDictionary *> *)querySQL:(nullable NSString *)SQL UID:(NSString * _Nullable)UID;
 
 @end
 

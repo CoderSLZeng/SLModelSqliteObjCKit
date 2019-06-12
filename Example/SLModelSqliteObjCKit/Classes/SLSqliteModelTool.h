@@ -22,13 +22,22 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)createTableOfClass:(Class)cls UID:(nullable NSString *)UID;
 
 /**
- 判定表格是否需要更新
+ 判定表的数据是否需要更新
 
  @param cls 类名
  @param UID 根据UID打开相应的数据库
  @return 是否更新
  */
 + (BOOL)isTableRequiredUpdateOfClass:(Class)cls UID:(nullable NSString *)UID;
+
+/**
+ 更新表的数据
+
+ @param cls 类名
+ @param UID 根据UID打开相应的数据库
+ @return 是否更新成功
+ */
++ (BOOL)updateTableOfClass:(Class)cls UID:(nullable NSString *)UID;
 
 @end
 
