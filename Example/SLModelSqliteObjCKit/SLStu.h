@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign, nonatomic) int stuNum;
 @property (copy, nonatomic) NSString *name;
-@property (assign, nonatomic) int age;
+@property (assign, nonatomic) int age2;
 @property (assign, nonatomic) float score;
 @property (assign, nonatomic) float score2;
 @property (assign, nonatomic) float height;

@@ -72,13 +72,28 @@
     NSArray *sourceCloumnNames = [SLTableTool tableSortedColumnNamesOfClass:cls UID:UID];
     NSArray *targetCloumnNames = [SLModelTool sortedIvarNamesOfClass:cls];
     
+    // 3.1.获取更名字典
+    NSDictionary *newNameToOldNameDict = nil;
+    if ([cls respondsToSelector:@selector(newNameToOldNameDict)]) {
+        newNameToOldNameDict = [cls newNameToOldNameDict];
+    }
+    
     for (NSString *targetClomunName in targetCloumnNames) {
-        if (![sourceCloumnNames containsObject:targetClomunName]) continue;
         
+        NSString *oldName = targetClomunName;
+        
+        // 找映射的旧的字段名称
+        if ([newNameToOldNameDict[targetClomunName] length] != 0) {
+            oldName = newNameToOldNameDict[targetClomunName];
+        }
+        
+        if ([targetClomunName isEqualToString:primaryKey] || (![sourceCloumnNames containsObject:targetClomunName] && ![sourceCloumnNames containsObject:oldName]) ) continue;
+        
+        // update 临时表 set 新字段名称 = (select 旧字段名 from 旧表 where 临时表.主键 = 旧表.主键)
         NSString *updateSQL = [NSString stringWithFormat:@"update %@ set %@ = (select %@ from %@ where %@.%@ = %@.%@)",
                                tmpTableName,
                                targetClomunName,
-                               targetClomunName,
+                               oldName,
                                sourceTableName,
                                tmpTableName,
                                primaryKey,
