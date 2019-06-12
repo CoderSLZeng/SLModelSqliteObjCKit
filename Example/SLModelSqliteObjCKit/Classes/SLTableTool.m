@@ -55,4 +55,12 @@
     return names;
 }
 
++ (BOOL)isTableExistsOfClass:(Class)cls UID:(NSString *)UID {
+    NSString *tableName = [SLModelTool tableNameOfClass:cls];
+    NSString *queryTableNameSQL = [NSString stringWithFormat:@"select sql from sqlite_master where type = 'table' and name = '%@'", tableName];
+    
+    NSMutableArray *result = [SLSqliteTool querySQL:queryTableNameSQL UID:UID];
+    return result.count > 0;
+}
+
 @end

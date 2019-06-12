@@ -19,6 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
  @return 排好序的字段名
  */
 + (nullable NSArray<NSString *> *)tableSortedColumnNamesOfClass:(Class)cls UID:(nullable NSString *)UID;
+
+/**
+ 根据模型类型查找数据库是否存在该表
+
+ @param cls 类名
+ @param UID 根据UID打开相应的数据库
+ @return 是否存在
+ */
++ (BOOL)isTableExistsOfClass:(Class)cls UID:(nullable NSString *)UID;
 @end
 
 NS_ASSUME_NONNULL_END

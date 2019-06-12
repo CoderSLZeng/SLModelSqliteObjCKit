@@ -87,7 +87,7 @@
             oldName = newNameToOldNameDict[targetClomunName];
         }
         
-        if ([targetClomunName isEqualToString:primaryKey] || (![sourceCloumnNames containsObject:targetClomunName] && ![sourceCloumnNames containsObject:oldName]) ) continue;
+        if ((![sourceCloumnNames containsObject:targetClomunName] && ![sourceCloumnNames containsObject:oldName]) || [targetClomunName isEqualToString:primaryKey]) continue;
         
         // update 临时表 set 新字段名称 = (select 旧字段名 from 旧表 where 临时表.主键 = 旧表.主键)
         NSString *updateSQL = [NSString stringWithFormat:@"update %@ set %@ = (select %@ from %@ where %@.%@ = %@.%@)",
@@ -112,6 +112,60 @@
     [executeSQLs addObject:renameTmpTalbeNameSQL];
     return [SLSqliteTool excuteSQLs:executeSQLs UID:UID];
     
+}
+
++ (BOOL)saveOrUpateModel:(id)model UID:(NSString *)UID {
+    // 1.获取模型的类型
+    Class cls = [model class];
+    // 2.判断表名是否存在，不存在，则创建
+    if (![SLTableTool isTableExistsOfClass:cls UID:UID]) {
+        [self createTableOfClass:cls UID:UID];
+    }
+    
+    // 2.检测表是否需要更新
+    if ([self isTableRequiredUpdateOfClass:cls UID:UID]) {
+        [self updateTableOfClass:cls UID:UID];
+    }
+    
+    // 3.判断记录是否存在主键
+    // 从表里面按照主键进行查询该记录
+    NSString *tableName = [SLModelTool tableNameOfClass:cls];
+    if (![cls respondsToSelector:@selector(primaryKey)]) {
+        NSAssert(nil, @"【cls】 必须遵守 【SLModelProtocol】 协议 并实现 【+ (NSString *)primaryKey;】 来告诉我主键信息");
+    }
+    
+    NSString *primaryKey = [cls primaryKey];
+    id primaryValue = [model valueForKeyPath:primaryKey];
+    
+    // 获取字段数组
+    NSArray *columnNames = [SLModelTool classIvarNameTypeDictOfClass:cls].allKeys;
+    
+    // 获取值数组
+    NSMutableArray *columnValues = [NSMutableArray array];
+    for (NSString *columnName in columnNames) {
+        id value = [model valueForKeyPath:columnName];
+        [columnValues addObject:value];
+    }
+    
+    NSMutableArray *setColumnNamesAndValues = [NSMutableArray array];
+    for (NSUInteger i = 0; i < columnNames.count; i++) {
+        NSString *columnName = columnNames[i];
+        id columnValue = columnValues[i];
+        NSString *setStr = [NSString stringWithFormat:@"%@='%@'", columnName, columnValue];
+        [setColumnNamesAndValues addObject:setStr];
+    }
+    
+    // 更新
+    NSString *checkSQL = [NSString stringWithFormat:@"select * from %@ where %@ = '%@'", tableName, primaryKey, primaryValue];
+    NSArray *result = [SLSqliteTool querySQL:checkSQL UID:UID];
+    NSString *excuteSQL = nil;
+    if (result.count > 0) {
+        excuteSQL = [NSString stringWithFormat:@"update %@ set %@ where %@ = '%@'", tableName, [setColumnNamesAndValues componentsJoinedByString:@", "], primaryKey, primaryValue];
+    } else {
+        excuteSQL = [NSString stringWithFormat:@"insert into %@( %@ ) values( '%@' )", tableName, [columnNames componentsJoinedByString:@","], [columnValues componentsJoinedByString:@"', '"]];
+    }
+    
+    return [SLSqliteTool excuteSQL:excuteSQL UID:UID];
 }
 
 

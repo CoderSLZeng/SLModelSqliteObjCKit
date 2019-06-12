@@ -37,23 +37,21 @@ sqlite3 *ppDb = nil;
 
 + (BOOL)excuteSQLs:(NSArray<NSString *> *)SQLs UID:(NSString *)UID {
     
-    // 开启事物
+    // 开启事务
     [self excuteSQL:@"begin transaction" UID:UID];
     
     for (NSString *SQL in SQLs) {
         BOOL result = [self excuteSQL:SQL UID:UID];
-        if (!result) {
-            // 回滚事物
+        if (result == NO) {
+            // 回滚事务
             [self excuteSQL:@"rollback transaction" UID:UID];
             return NO;
         }
     }
     
-    // 提交事物
+    // 提交事务
     [self excuteSQL:@"commit transaction" UID:UID];
     return YES;
-    
-    return NO;
 }
 
 + (NSMutableArray<NSMutableDictionary *> *)querySQL:(NSString *)SQL UID:(NSString *)UID {

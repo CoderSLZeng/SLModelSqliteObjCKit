@@ -30,6 +30,7 @@
 		AE0DCBA122AF9E660062B472 /* SLTableToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCBA022AF9E660062B472 /* SLTableToolTests.m */; };
 		AE2AA92E22AE5E4A00C6448C /* SLSqliteTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2AA92C22AE5E4A00C6448C /* SLSqliteTool.m */; };
 		AE2AA93022AE5E5900C6448C /* SLSqliteToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2AA92F22AE5E5900C6448C /* SLSqliteToolTests.m */; };
+		AECC909F22B0F22600B7FD47 /* SLPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = AECC909E22B0F22600B7FD47 /* SLPerson.m */; };
 		E6A8E6616E22DC7518BB27EC /* Pods_SLModelSqliteObjCKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6DF6A9E136D39787B8F17E /* Pods_SLModelSqliteObjCKit_Tests.framework */; };
 		EA6894027115CBC406738FA4 /* Pods_SLModelSqliteObjCKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A43ECFAECACA946044CE4D54 /* Pods_SLModelSqliteObjCKit_Example.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,8 @@
 		AE2AA92C22AE5E4A00C6448C /* SLSqliteTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSqliteTool.m; sourceTree = "<group>"; };
 		AE2AA92D22AE5E4A00C6448C /* SLSqliteTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSqliteTool.h; sourceTree = "<group>"; };
 		AE2AA92F22AE5E5900C6448C /* SLSqliteToolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSqliteToolTests.m; sourceTree = "<group>"; };
+		AECC909D22B0F22600B7FD47 /* SLPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLPerson.h; sourceTree = "<group>"; };
+		AECC909E22B0F22600B7FD47 /* SLPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLPerson.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				6003F594195388D20070C39A /* Supporting Files */,
 				AE0DCB8B22AF54160062B472 /* SLStu.h */,
 				AE0DCB8C22AF54160062B472 /* SLStu.m */,
+				AECC909D22B0F22600B7FD47 /* SLPerson.h */,
+				AECC909E22B0F22600B7FD47 /* SLPerson.m */,
 			);
 			name = "Example for SLModelSqliteObjCKit";
 			path = SLModelSqliteObjCKit;
@@ -419,6 +424,7 @@
 				AE0DCB8D22AF54160062B472 /* SLStu.m in Sources */,
 				6003F59E195388D20070C39A /* SLAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* SLViewController.m in Sources */,
+				AECC909F22B0F22600B7FD47 /* SLPerson.m in Sources */,
 				AE0DCB9022AF54880062B472 /* SLModelTool.m in Sources */,
 				AE0DCB9F22AF9B510062B472 /* SLTableTool.m in Sources */,
 				AE0DCB9522AF804E0062B472 /* SLSqliteModelTool.m in Sources */,

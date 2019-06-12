@@ -39,6 +39,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)updateTableOfClass:(Class)cls UID:(nullable NSString *)UID;
 
+/**
+ 保存或更新模型
+
+ @param model 数据模型
+ @param UID 根据UID打开相应的数据库
+ @return 是否保存或更新成功
+ */
++ (BOOL)saveOrUpateModel:(id)model UID:(nullable NSString *)UID;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "SLSqliteModelTool.h"
+#import "SLStu.h"
+#import "SLPerson.h"
 
 @interface SLSqliteModelToolTests : XCTestCase
 
@@ -34,6 +36,24 @@
         BOOL isUpdate = [SLSqliteModelTool updateTableOfClass:NSClassFromString(@"SLStu") UID:nil];
         XCTAssertTrue(isUpdate);
     }
+    XCTAssertTrue(isSuccess);
+}
+
+- (void)testSaveModel {
+//    SLStu *stu = [[SLStu alloc] init];
+//    stu.stuNum = 1988;
+//    stu.age2 = 19;
+//    stu.name = @"jack";
+//    stu.isRich = YES;
+//    stu.score = 99;
+//    stu.height = 170;
+    
+    SLPerson *stu = [[SLPerson alloc] init];
+    stu.perNum = 1987;
+    stu.name = @"jim";
+    stu.age2 = 31;
+    
+    BOOL isSuccess = [SLSqliteModelTool saveOrUpateModel:stu UID:nil];
     XCTAssertTrue(isSuccess);
 }
 
