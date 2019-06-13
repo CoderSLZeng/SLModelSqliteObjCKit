@@ -21,10 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLSqliteModelTool : NSObject
 
 /**
- 将类名作为数据模型创建数据表
+ 将数据模型类名作为数据模型创建数据表
 
- @param cls 类名
- @param UID 根据UID打开相应的数据库
+ @param cls 数据模型类
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @return 是否创建成功
  */
 + (BOOL)createTableOfClass:(Class)cls UID:(nullable NSString *)UID;
@@ -32,8 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  判定表的数据是否需要更新
 
- @param cls 类名
- @param UID 根据UID打开相应的数据库
+ @param cls 数据模型类
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @return 是否更新
  */
 + (BOOL)isTableRequiredUpdateOfClass:(Class)cls UID:(nullable NSString *)UID;
@@ -41,8 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  更新表的数据
 
- @param cls 类名
- @param UID 根据UID打开相应的数据库
+ @param cls 数据模型类
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @return 是否更新成功
  */
 + (BOOL)updateTableOfClass:(Class)cls UID:(nullable NSString *)UID;
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  保存或更新模型
 
  @param model 数据模型
- @param UID 根据UID打开相应的数据库
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @return 是否保存或更新成功
  */
 + (BOOL)saveOrUpateModel:(id)model UID:(nullable NSString *)UID;
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
  根据数据模型删除记录
 
  @param model 数据模型
- @param UID 根据UID打开相应的数据库
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @return 是否删除
  */
 + (BOOL)deleteModel:(id)model UID:(nullable NSString *)UID;
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  根据数据模型和条件语句删除记录
 
  @param model 数据模型
- @param UID 根据UID打开相应的数据库
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @param whereText 条件语句
  @return 是否删除
  */
@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
  根据数据模型和关系条件删除记录
 
  @param model 数据模型
- @param UID 根据UID打开相应的数据库
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @param columnName 字段名
  @param relation 条件关系
  @param columnValue 字段值
@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
  根据数据模型类和SQL语句查询数据模型
 
  @param cls 数据模型类
- @param UID 根据UID打开相应的数据库
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @param SQL SQL语句
  @return 数据模型
  */
@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
  根据数据模型类查询所有的数据模型
 
  @param cls 数据模型类
- @param UID 根据UID打开相应的数据库
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @return 所有的数据模型
  */
 + (NSArray *)queryAllModelsOfClass:(Class)cls UID:(nullable NSString *)UID;
@@ -116,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
  根据数据模型类和关系条件查询数据模型
 
  @param cls 数据模型类
- @param UID 根据UID打开相应的数据库
+ @param UID 用户的唯一标识 根据UID打开相应的数据库
  @param columnName 字段名
  @param relation 关系
  @param columnValue 字段值

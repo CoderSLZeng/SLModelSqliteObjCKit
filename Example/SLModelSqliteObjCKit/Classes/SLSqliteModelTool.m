@@ -259,7 +259,7 @@
 /**
  检查是否有主键
 
- @param cls 类名
+ @param cls 数据模型类
  */
 + (void)checkPrimaryKeyOfClass:(Class _Nonnull)cls {
     if (![cls respondsToSelector:@selector(primaryKey)]) {

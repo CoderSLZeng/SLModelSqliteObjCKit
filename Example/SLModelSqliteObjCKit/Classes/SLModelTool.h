@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  获取数据库表名
 
- @param cls 类名
+ @param cls 数据模型类
  @return 表名
  */
 + (NSString *)tableNameOfClass:(Class)cls;
@@ -24,29 +24,29 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  获取一个临时表名
 
- @param cls 类名
+ @param cls 数据模型类
  @return 临时表名
  */
 + (NSString *)tempTableNameOfClass:(Class)cls;
 
 /**
- 将类中所有成员变量的 变量名做为键 和 变量类型作为值 组成字典
+ 将数据模型类中所有成员变量的 变量名做为键 和 变量类型作为值 组成字典
 
- @param cls 类名
+ @param cls 数据模型类
  @return 成员变量名和类型组成字典
  */
 + (NSMutableDictionary<NSString *, NSString *> *)classIvarNameTypeDictOfClass:(Class)cls;
 
 /**
- 将类中所有成员变量的 变量名做为键 和 变量类型转换成SQLite类型作为值 组成字典
+ 将数据模型类中所有成员变量的 变量名做为键 和 变量类型转换成SQLite类型作为值 组成字典
 
- @param cls 类名
+ @param cls 数据模型类
  @return 成员变量名和SQLite类型组成字典
  */
 + (NSMutableDictionary<NSString *, NSString *> *)classIvarNameSQLiteTypeDictOfClass:(Class)cls;
 
 /**
- 将类中所有成员变量的 变量名 和 变量类型转换成SQLite类型 拼接成为一条SQL语句中的字段及类型字符串
+ 将数据模型类中所有成员变量的 变量名 和 变量类型转换成SQLite类型 拼接成为一条SQL语句中的字段及类型字符串
 
  @param cls 类名
  @return 字段及类型字符串
@@ -54,9 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)componentsClassIvarNamesAndSQLiteTypesStringOfClass:(Class)cls;
 
 /**
- 将类中所有成员变量的变量名进行排序
+ 将数据模型类中所有成员变量的变量名进行排序
 
- @param cls 类名
+ @param cls 数据模型类
  @return 排好序的成员变量名数据
  */
 + (NSArray<NSString *> *)sortedIvarNamesOfClass:(Class)cls;

@@ -9,8 +9,7 @@
 #import "SLSqliteTool.h"
 #import <sqlite3.h>
 
-//#define kCachePath NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject
-#define kCachePath @"/Users/zeng/Desktop"
+#define kCachePath NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject
 
 sqlite3 *ppDb = nil;
 
