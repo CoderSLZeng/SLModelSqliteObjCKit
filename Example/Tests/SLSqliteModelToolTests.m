@@ -48,13 +48,37 @@
 //    stu.score = 99;
 //    stu.height = 170;
     
-    SLPerson *stu = [[SLPerson alloc] init];
-    stu.perNum = 1987;
-    stu.name = @"jim";
-    stu.age2 = 31;
+    SLPerson *per = [[SLPerson alloc] init];
+    per.perNum = 1987;
+    per.name = @"jim";
+    per.age2 = 31;
     
-    BOOL isSuccess = [SLSqliteModelTool saveOrUpateModel:stu UID:nil];
+    BOOL isSuccess = [SLSqliteModelTool saveOrUpateModel:per UID:nil];
     XCTAssertTrue(isSuccess);
+}
+
+- (void)testDeleteModel {
+    SLPerson *per = [[SLPerson alloc] init];
+    per.perNum = 1987;
+    per.name = @"jim";
+    per.age2 = 31;
+    BOOL isDelete = [SLSqliteModelTool deleteModel:per UID:nil];
+    XCTAssertTrue(isDelete);
+}
+
+- (void)testDeleteModel1 {
+    
+    BOOL isDelete = [SLSqliteModelTool deleteModel:[SLPerson class] UID:nil whereText:@"name = 'jack'"];
+    XCTAssertTrue(isDelete);
+}
+
+- (void)testDeleteModel2 {
+    BOOL isDelete = [SLSqliteModelTool deleteModel:[SLPerson class]
+                                               UID:nil
+                                        cloumnName:@"age2"
+                                          relation:ColumnNameToValueRelationTypeLess
+                                             value:@30];
+    XCTAssertTrue(isDelete);
 }
 
 
