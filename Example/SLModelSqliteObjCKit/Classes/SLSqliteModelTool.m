@@ -14,8 +14,6 @@
 
 @implementation SLSqliteModelTool
 
-
-
 + (BOOL)createTableOfClass:(Class)cls UID:(NSString *)UID {
     
     // 1.拼接创建表格的SQL语句
@@ -142,6 +140,16 @@
     NSMutableArray *columnValues = [NSMutableArray array];
     for (NSString *columnName in columnNames) {
         id value = [model valueForKeyPath:columnName];
+        
+        if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSDictionary class]]) {
+            // 在这里把字典或数组，处理成为字符串，保存到数据库里面去
+            // 字典/数组 -> data
+            NSData *data = [NSJSONSerialization dataWithJSONObject:value options:NSJSONWritingPrettyPrinted error:nil];
+            
+            // data -> NSString
+            value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        }
+        
         [columnValues addObject:value];
     }
     
@@ -204,7 +212,7 @@
 + (BOOL)deleteModel:(id)model
                 UID:(NSString *)UID
          columnName:(NSString *)columnName
-           relation:(ColumnNameToValueRelationType)relation
+           relation:(SLColumnNameToValueRelationType)relation
               columnValue:(id)columnValue {
     
     // 1.获取模型的类名
@@ -237,7 +245,7 @@
 + (NSArray *)queryModelsOfClass:(Class)cls
                             UID:(nullable NSString *)UID
                      columnName:(NSString *)columnName
-                       relation:(ColumnNameToValueRelationType)relation
+                       relation:(SLColumnNameToValueRelationType)relation
                     columnValue:(id)columnValue {
     NSString *tableName = [SLModelTool tableNameOfClass:cls];
     NSString *relationType = [self columnNameToValueRelationTypeDict][@(relation)];
@@ -273,21 +281,42 @@
 
 + (NSArray *)parseResults:(NSArray<NSMutableDictionary *> *)results withClass:(Class)cls {
     NSMutableArray *models = [NSMutableArray array];
+    
+    NSDictionary *nameTypeDict = [SLModelTool classIvarNameTypeDictOfClass:cls];
+    
     for (NSMutableDictionary *modelDict in results) {
         id model = [[cls alloc] init];
+        
+        [modelDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            NSString *type = nameTypeDict[key];
+            
+            id resultValue = obj;
+            
+            if ([type isEqualToString:NSStringFromClass([NSArray class])] || [type isEqualToString:NSStringFromClass([NSDictionary class])]) {
+
+                NSData *data = [obj dataUsingEncoding:NSUTF8StringEncoding];
+                resultValue = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            } else if ([type isEqualToString:NSStringFromClass([NSMutableArray class])] || [type isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+
+                NSData *data = [obj dataUsingEncoding:NSUTF8StringEncoding];
+                resultValue = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            }
+        
+            [model setValue:resultValue forKey:key];
+        }];
+        
         [models addObject:model];
-        [model setValuesForKeysWithDictionary:modelDict];
     }
     return models;
 }
 
 + (NSDictionary<NSNumber *, NSString *> *)columnNameToValueRelationTypeDict {
     return @{
-             @(ColumnNameToValueRelationTypeMore)      : @">",
-             @(ColumnNameToValueRelationTypeLess)      : @"<",
-             @(ColumnNameToValueRelationTypeEqual)     : @" =",
-             @(ColumnNameToValueRelationTypeMoreEqual) : @">=",
-             @(ColumnNameToValueRelationTypeLessEqual) : @"<="
+             @(SLColumnNameToValueRelationTypeMore)      : @">",
+             @(SLColumnNameToValueRelationTypeLess)      : @"<",
+             @(SLColumnNameToValueRelationTypeEqual)     : @" =",
+             @(    SLColumnNameToValueRelationTypeMoreEqual) : @">=",
+             @(SLColumnNameToValueRelationTypeLessEqual) : @"<="
              };
 }
 

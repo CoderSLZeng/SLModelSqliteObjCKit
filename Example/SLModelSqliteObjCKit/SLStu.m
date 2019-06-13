@@ -18,9 +18,9 @@
     return @[@"b", @"score2"];
 }
 
-+ (NSDictionary *)newNameToOldNameDict {
-    return @{@"age2" : @"age"};
-}
+//+ (NSDictionary *)newNameToOldNameDict {
+//    return @{@"age" : @"age2"};
+//}
 
 - (NSString *)description {
     return [NSString stringWithFormat:
@@ -31,7 +31,11 @@
             "isRich = %d, "
             "score = %f, "
             "score2 = %f, "
-            "b = %d",
+            "b = %d, "
+            "array = %@, "
+            "arryM = %@, "
+            "dict = %@, "
+            "dictM = %@",
             self.name,
             self.stuNum,
             self.age2,
@@ -39,7 +43,12 @@
             self.isRich,
             self.score,
             self.score2,
-            b];
+            b,
+            self.array,
+            self.arrayM,
+            self.dict,
+            self.dictM
+            ];
 }
 
 @end

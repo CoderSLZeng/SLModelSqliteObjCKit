@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, ColumnNameToValueRelationType) {
-    ColumnNameToValueRelationTypeMore,
-    ColumnNameToValueRelationTypeLess,
-    ColumnNameToValueRelationTypeEqual,
-    ColumnNameToValueRelationTypeMoreEqual,
-    ColumnNameToValueRelationTypeLessEqual
+typedef NS_ENUM(NSUInteger, SLColumnNameToValueRelationType) {
+    SLColumnNameToValueRelationTypeMore,
+    SLColumnNameToValueRelationTypeLess,
+    SLColumnNameToValueRelationTypeEqual,
+        SLColumnNameToValueRelationTypeMoreEqual,
+    SLColumnNameToValueRelationTypeLessEqual
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)deleteModel:(id)model
                 UID:(nullable NSString *)UID
          columnName:(NSString *)columnName
-           relation:(ColumnNameToValueRelationType)relation
+           relation:(SLColumnNameToValueRelationType)relation
               columnValue:(id)columnValue;
 
 /**
@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)queryModelsOfClass:(Class)cls
                             UID:(nullable NSString *)UID
                      columnName:(NSString *)columnName
-                       relation:(ColumnNameToValueRelationType)relation
+                       relation:(SLColumnNameToValueRelationType)relation
                           columnValue:(id)columnValue;
 
 

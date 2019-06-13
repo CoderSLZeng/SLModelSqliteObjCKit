@@ -25,6 +25,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
+
 - (void)testCreateTable {
     BOOL isSuccess = [SLSqliteModelTool createTableOfClass:NSClassFromString(@"SLStu") UID:nil];
     XCTAssertTrue(isSuccess);
@@ -57,6 +58,34 @@
     XCTAssertTrue(isSuccess);
 }
 
+- (void)testSaveModel2 {
+    SLStu *stu = [[SLStu alloc] init];
+    stu.stuNum = 1985;
+    stu.age2 = 19;
+    stu.name = @"jack";
+    stu.isRich = YES;
+    stu.score = 99;
+    stu.height = 170;
+    
+    stu.dict = @{
+                 @"国籍" : @"中国",
+                 @"省份" : @"广东省",
+                 @"管辖市" : @"东莞市"
+                 };
+    
+    stu.array = stu.dict.allKeys;
+    stu.arrayM = [NSMutableArray arrayWithArray:stu.dict.allValues];
+    
+    stu.dictM = [NSMutableDictionary dictionary];
+    [stu.dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        [stu.dictM setValue:key forKey:obj];
+    }];
+    
+    
+    BOOL isSuccess = [SLSqliteModelTool saveOrUpateModel:stu UID:nil];
+    XCTAssertTrue(isSuccess);
+}
+
 - (void)testDeleteModel {
     SLPerson *per = [[SLPerson alloc] init];
     per.perNum = 1987;
@@ -76,7 +105,7 @@
     BOOL isDelete = [SLSqliteModelTool deleteModel:[SLPerson class]
                                                UID:nil
                                         columnName:@"age2"
-                                          relation:ColumnNameToValueRelationTypeLess
+                                          relation:SLColumnNameToValueRelationTypeLess
                                        columnValue:@30];
     XCTAssertTrue(isDelete);
 }
@@ -94,9 +123,9 @@
 - (void)testQueryModel2 {
     NSArray *models = [SLSqliteModelTool queryModelsOfClass:[SLStu class]
                                                         UID:nil
-                                                 columnName:@"age2"
-                                                   relation:ColumnNameToValueRelationTypeLess
-                                                columnValue:@20];
+                                                 columnName:@"stuNum"
+                                                   relation:SLColumnNameToValueRelationTypeLess
+                                                columnValue:@1986];
     NSLog(@"%@", models);
 }
 
