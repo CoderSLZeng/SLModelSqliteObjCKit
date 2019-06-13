@@ -22,10 +22,10 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		AE0DCB8D22AF54160062B472 /* SLStu.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCB8C22AF54160062B472 /* SLStu.m */; };
-		AE0DCB9222AF585F0062B472 /* SLModelToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCB9122AF585F0062B472 /* SLModelToolTests.m */; };
-		AE0DCB9C22AF8BAB0062B472 /* SLSqliteModelToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCB9B22AF8BAB0062B472 /* SLSqliteModelToolTests.m */; };
-		AE0DCBA122AF9E660062B472 /* SLTableToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCBA022AF9E660062B472 /* SLTableToolTests.m */; };
 		AE2AA93022AE5E5900C6448C /* SLSqliteToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2AA92F22AE5E5900C6448C /* SLSqliteToolTests.m */; };
+		AE73DD5722B23A1F009C4963 /* SLSqliteModelToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCB9B22AF8BAB0062B472 /* SLSqliteModelToolTests.m */; };
+		AE73DD5822B23A75009C4963 /* SLTableToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCBA022AF9E660062B472 /* SLTableToolTests.m */; };
+		AE73DD5922B23BBD009C4963 /* SLModelToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0DCB9122AF585F0062B472 /* SLModelToolTests.m */; };
 		AECC909F22B0F22600B7FD47 /* SLPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = AECC909E22B0F22600B7FD47 /* SLPerson.m */; };
 		E6A8E6616E22DC7518BB27EC /* Pods_SLModelSqliteObjCKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6DF6A9E136D39787B8F17E /* Pods_SLModelSqliteObjCKit_Tests.framework */; };
 		EA6894027115CBC406738FA4 /* Pods_SLModelSqliteObjCKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A43ECFAECACA946044CE4D54 /* Pods_SLModelSqliteObjCKit_Example.framework */; };
@@ -410,9 +410,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE0DCB9C22AF8BAB0062B472 /* SLSqliteModelToolTests.m in Sources */,
-				AE0DCBA122AF9E660062B472 /* SLTableToolTests.m in Sources */,
-				AE0DCB9222AF585F0062B472 /* SLModelToolTests.m in Sources */,
+				AE73DD5822B23A75009C4963 /* SLTableToolTests.m in Sources */,
+				AE73DD5722B23A1F009C4963 /* SLSqliteModelToolTests.m in Sources */,
+				AE73DD5922B23BBD009C4963 /* SLModelToolTests.m in Sources */,
 				AE2AA93022AE5E5900C6448C /* SLSqliteToolTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
