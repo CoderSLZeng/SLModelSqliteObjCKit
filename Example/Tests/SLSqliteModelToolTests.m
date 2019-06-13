@@ -75,11 +75,31 @@
 - (void)testDeleteModel2 {
     BOOL isDelete = [SLSqliteModelTool deleteModel:[SLPerson class]
                                                UID:nil
-                                        cloumnName:@"age2"
+                                        columnName:@"age2"
                                           relation:ColumnNameToValueRelationTypeLess
-                                             value:@30];
+                                       columnValue:@30];
     XCTAssertTrue(isDelete);
 }
+
+- (void)testQueryAllModel {
+    NSArray *models = [SLSqliteModelTool queryAllModelsOfClass:[SLStu class] UID:nil];
+    NSLog(@"%@", models);
+}
+
+- (void)testQueryModel1 {
+    NSArray *models = [SLSqliteModelTool queryModelsOfClass:[SLStu class] UID:nil SQL:@"select * from t_slstu where age2 = '18';"];
+    NSLog(@"%@", models);
+}
+
+- (void)testQueryModel2 {
+    NSArray *models = [SLSqliteModelTool queryModelsOfClass:[SLStu class]
+                                                        UID:nil
+                                                 columnName:@"age2"
+                                                   relation:ColumnNameToValueRelationTypeLess
+                                                columnValue:@20];
+    NSLog(@"%@", models);
+}
+
 
 
 

@@ -80,16 +80,55 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param model 数据模型
  @param UID 根据UID打开相应的数据库
- @param cloumnName 字段名
- @param relation 关系
- @param value 字段值
+ @param columnName 字段名
+ @param relation 条件关系
+ @param columnValue 字段值
  @return 是否删除
  */
 + (BOOL)deleteModel:(id)model
                 UID:(nullable NSString *)UID
-         cloumnName:(NSString *)cloumnName
+         columnName:(NSString *)columnName
            relation:(ColumnNameToValueRelationType)relation
-              value:(id)value;
+              columnValue:(id)columnValue;
+
+/**
+ 根据数据模型类和SQL语句查询数据模型
+
+ @param cls 数据模型类
+ @param UID 根据UID打开相应的数据库
+ @param SQL SQL语句
+ @return 数据模型
+ */
++ (NSArray *)queryModelsOfClass:(Class)cls
+                            UID:(nullable NSString *)UID
+                            SQL:(NSString *)SQL;
+
+/**
+ 根据数据模型类查询所有的数据模型
+
+ @param cls 数据模型类
+ @param UID 根据UID打开相应的数据库
+ @return 所有的数据模型
+ */
++ (NSArray *)queryAllModelsOfClass:(Class)cls UID:(nullable NSString *)UID;
+
+/**
+ 根据数据模型类和关系条件查询数据模型
+
+ @param cls 数据模型类
+ @param UID 根据UID打开相应的数据库
+ @param columnName 字段名
+ @param relation 关系
+ @param columnValue 字段值
+ @return 数据模型
+ */
++ (NSArray *)queryModelsOfClass:(Class)cls
+                            UID:(nullable NSString *)UID
+                     columnName:(NSString *)columnName
+                       relation:(ColumnNameToValueRelationType)relation
+                          columnValue:(id)columnValue;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

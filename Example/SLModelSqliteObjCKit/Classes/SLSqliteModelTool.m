@@ -203,9 +203,9 @@
 
 + (BOOL)deleteModel:(id)model
                 UID:(NSString *)UID
-         cloumnName:(NSString *)cloumnName
+         columnName:(NSString *)columnName
            relation:(ColumnNameToValueRelationType)relation
-              value:(id)value {
+              columnValue:(id)columnValue {
     
     // 1.获取模型的类名
     Class cls = [self modelClass:model];
@@ -215,10 +215,37 @@
     
     // 3.删除SQL语句
     NSString *relationType = [self columnNameToValueRelationTypeDict][@(relation)];
-    NSString *deleteModelSQL = [NSString stringWithFormat:@"delete from %@ where %@ %@ '%@'", tableName, cloumnName, relationType, value];
+    NSString *deleteModelSQL = [NSString stringWithFormat:@"delete from %@ where %@ %@ '%@'", tableName, columnName, relationType, columnValue];
     return [SLSqliteTool excuteSQL:deleteModelSQL UID:UID];
+}
+
++ (NSArray *)queryModelsOfClass:(Class)cls
+                            UID:(nullable NSString *)UID
+                            SQL:(NSString *)SQL {
+    NSMutableArray<NSMutableDictionary *> *results = [SLSqliteTool querySQL:SQL UID:UID];
+    return [self parseResults:results withClass:cls];
+}
+
++ (NSArray *)queryAllModelsOfClass:(Class)cls UID:(nullable NSString *)UID {
+    NSString *tableName = [SLModelTool tableNameOfClass:cls];
+    
+    NSString *SQL = [NSString stringWithFormat:@"select * from %@", tableName];
+    return [self queryModelsOfClass:cls UID:UID SQL:SQL];
     
 }
+
++ (NSArray *)queryModelsOfClass:(Class)cls
+                            UID:(nullable NSString *)UID
+                     columnName:(NSString *)columnName
+                       relation:(ColumnNameToValueRelationType)relation
+                    columnValue:(id)columnValue {
+    NSString *tableName = [SLModelTool tableNameOfClass:cls];
+    NSString *relationType = [self columnNameToValueRelationTypeDict][@(relation)];
+    NSString *SQL = [NSString stringWithFormat:@"select * from %@ where %@ %@ '%@'", tableName, columnName, relationType, columnValue];
+    return [self queryModelsOfClass:cls UID:UID SQL:SQL];
+    
+}
+
 
 #pragma mark - 私有方法
 /**
@@ -242,6 +269,16 @@
     Class cls = [model class];
     [self checkPrimaryKeyOfClass:cls];
     return cls;
+}
+
++ (NSArray *)parseResults:(NSArray<NSMutableDictionary *> *)results withClass:(Class)cls {
+    NSMutableArray *models = [NSMutableArray array];
+    for (NSMutableDictionary *modelDict in results) {
+        id model = [[cls alloc] init];
+        [models addObject:model];
+        [model setValuesForKeysWithDictionary:modelDict];
+    }
+    return models;
 }
 
 + (NSDictionary<NSNumber *, NSString *> *)columnNameToValueRelationTypeDict {

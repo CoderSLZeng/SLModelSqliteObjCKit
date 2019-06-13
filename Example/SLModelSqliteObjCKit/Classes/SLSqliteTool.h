@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param UID 根据UID打开相应的数据库
  @return 字典(一行记录)组成的数组
  */
-+ (NSMutableArray <NSMutableDictionary *> *)querySQL:(nullable NSString *)SQL UID:(NSString * _Nullable)UID;
++ (NSMutableArray<NSMutableDictionary *> *)querySQL:(nullable NSString *)SQL UID:(NSString * _Nullable)UID;
 
 @end
 

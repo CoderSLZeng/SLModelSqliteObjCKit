@@ -22,4 +22,24 @@
     return @{@"age2" : @"age"};
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:
+            @"name = %@, "
+            "stuNum = %d, "
+            "age2 = %d, "
+            "height = %f, "
+            "isRich = %d, "
+            "score = %f, "
+            "score2 = %f, "
+            "b = %d",
+            self.name,
+            self.stuNum,
+            self.age2,
+            self.height,
+            self.isRich,
+            self.score,
+            self.score2,
+            b];
+}
+
 @end
